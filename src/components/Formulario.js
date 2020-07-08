@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
-import {Error} from '../components/Error'
 import shortid from 'shortid'
+import PropTypes from 'prop-types'
 
-export const Formulario = ({agregarNuevoGasto}) => {
+import {Error} from '../components/Error'
+
+export const Formulario = ({setGasto, setCrearGasto}) => {
   const [nombre, setNombre] = useState('')
   const [cantidad, setCantidad] = useState(0)
   const [error, setError] = useState(false)
@@ -25,7 +27,8 @@ export const Formulario = ({agregarNuevoGasto}) => {
     }
 
     // pasar el gasto al componente principal
-    agregarNuevoGasto(gasto)
+    setGasto(gasto)
+    setCrearGasto(true)
 
     // resetear formulario
     setNombre('')
@@ -63,7 +66,7 @@ export const Formulario = ({agregarNuevoGasto}) => {
           className="u-full-width"
           placeholder="Ej. 300"
           value={cantidad}
-          onChange={e => setCantidad(parseInt(e.target.value, 10))}
+          onChange={e => setCantidad(parseInt(e.target.value, 10) || '')}
           
         />
       </div>
@@ -74,4 +77,9 @@ export const Formulario = ({agregarNuevoGasto}) => {
       />
     </form>
   )
+}
+
+Formulario.propTypes = {
+  setGasto: PropTypes.func.isRequired,
+  setCrearGasto: PropTypes.func.isRequired
 }

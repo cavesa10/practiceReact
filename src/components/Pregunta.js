@@ -1,5 +1,6 @@
 import React, { Fragment, useState} from "react";
 import {Error} from '../components/Error'
+import PropTypes from 'prop-types'
 
 export const Pregunta = ({setPresupuesto, setRestante, setMostrarPregunta}) => {
   // Definir State
@@ -52,3 +53,9 @@ export const Pregunta = ({setPresupuesto, setRestante, setMostrarPregunta}) => {
     </Fragment>
   );
 };
+
+Pregunta.propTypes = {
+  setPresupuesto : PropTypes.func.isRequired,
+  setRestante :  PropTypes.func.isRequired,
+  setMostrarPregunta : PropTypes.func.isRequired
+}
